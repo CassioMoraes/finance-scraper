@@ -1,0 +1,24 @@
+{
+  "name": "finance-scraper",
+  "version": "0.0.0",
+  "description": "This project intends to scrape companies finances data from Yahoo Finances page.",
+  "main": "server.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CassioMoraes/finance-scraper.git"
+  },
+  "author": "Cassio Moraes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CassioMoraes/finance-scraper/issues"
+  },
+  "homepage": "https://github.com/CassioMoraes/finance-scraper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
