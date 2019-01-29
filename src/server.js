@@ -10,14 +10,28 @@ const options = {
 
 requestPromise(options)
     .then(($) => {
-        console.log($);
 
-        console.log($('.table-qsp-stats').innerHTML);
+        $("tr").each(function () {
 
-        $('.table-qsp-stats').each((table) => {
-            console.log("PETable", table.innerHTML);
             console.log();
+
+            var info = [];
+
+            $(this).find("td[data-reactid]").each(function () {
+
+                var infoOnCell = $(this).text();
+
+                if (infoOnCell.length > 1)
+                    info.push($(this).text());
+            });
+
+            if (info.length != 2)
+                console.log("Invalid collection");
+            else 
+                console.log(info[0] + ': ' + info[1]);
         });
+
+        console.log();        
     })
     .catch((err) => {
         console.log(err);
