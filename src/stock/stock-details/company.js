@@ -6,6 +6,7 @@ class Company {
         this.balanceSheet = null;
         this.profitability = null;
         this.incomeStatement = null;
+        this.valuationMeasure = null;
     }
 }
 

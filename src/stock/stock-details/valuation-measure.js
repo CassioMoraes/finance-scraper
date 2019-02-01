@@ -7,4 +7,4 @@ class ValuationMeasure {
     }
 }
 
-export default ValuationMeasure;
+module.exports = ValuationMeasure;
