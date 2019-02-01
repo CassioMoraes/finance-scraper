@@ -5,4 +5,4 @@ class BalanceSheet {
     }
 }
 
-export default BalanceSheet;
+module.exports = BalanceSheet;

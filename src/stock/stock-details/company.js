@@ -3,7 +3,10 @@ class Company {
         this.name = name;
         this.ticker = ticker;
         this.address = address;
+        this.balanceSheet = null;
+        this.profitability = null;
+        this.incomeStatement = null;
     }
 }
 
-export default Company;
+module.exports = Company;

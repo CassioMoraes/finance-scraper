@@ -5,4 +5,4 @@ class Profitability {
     }
 }
 
-export default Profitability;
+module.exports = Profitability;

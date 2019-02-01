@@ -7,4 +7,4 @@ class IncomeStatement {
     }
 }
 
-export default IncomeStatement;
+module.exports = IncomeStatement;

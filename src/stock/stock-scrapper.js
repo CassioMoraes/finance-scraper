@@ -26,7 +26,7 @@ class StockScrapper {
                         const infoOnCell = $(this).text();
 
                         if (infoOnCell.length > 1)
-                            info.push($(this).text());
+                            info.push($(this).text().trim());
                     });
 
                     if (info.length == 2)

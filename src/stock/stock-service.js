@@ -1,11 +1,15 @@
 class StockService {
-    constructor(stockScrapper) {
+    constructor(stockScrapper, stockMapper) {
         this.stockScrapper = stockScrapper;
+        this.stockMapper = stockMapper;
     }
 
     async getStockInfo() {
-        const stockPath = 'https://br.financas.yahoo.com/quote/BIDI4.SA/key-statistics?p=BIDI4.SA';
-        const stocksInfo = await this.stockScrapper.scrapeStockInfo(stockPath);
+        const ticker = 'BIDI4';
+        const stockPath = 'https://finance.yahoo.com/quote/' + ticker + '.SA/key-statistics?p=' + ticker + '.SA';
+        const scrapedInfo = await this.stockScrapper.scrapeStockInfo(stockPath);
+
+        const stocksInfo = this.stockMapper.map(scrapedInfo, ticker);
 
         return stocksInfo;
     }
