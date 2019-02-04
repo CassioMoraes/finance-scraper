@@ -6,14 +6,14 @@ const requestPromise = require('request-promise');
 const cheerio = require('cheerio');
 const _ = require('lodash');
 
-const StockScrapper = require('./stock/stock-scrapper');
+const StockScraper = require('./stock/stock-scraper');
 const StockMapper = require('./stock/stock-mapper');
 const StockService = require('./stock/stock-service');
 const StockController = require('./stock/stock-controller');
 
 const stockMapper = new StockMapper(_);
-const stockScrapper = new StockScrapper(cheerio, requestPromise);
-const stockService = new StockService(stockScrapper, stockMapper);
+const stockScraper = new StockScraper(cheerio, requestPromise);
+const stockService = new StockService(stockScraper, stockMapper);
 const stockController = new StockController(stockService);
 
 app.use(cors());

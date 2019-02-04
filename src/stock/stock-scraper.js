@@ -1,6 +1,6 @@
 'use strict';
 
-class StockScrapper {
+class StockScraper {
     constructor(cheerio, requestPromise) {
         this.cheerio = cheerio;
         this.requestPromise = requestPromise;
@@ -41,4 +41,4 @@ class StockScrapper {
     }
 }
 
-module.exports = StockScrapper;
+module.exports = StockScraper;
