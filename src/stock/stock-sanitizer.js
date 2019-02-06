@@ -2,16 +2,22 @@ class StockSanitizer {
     static sanitize(dirtyValue) {
         let sanitizedValue;
 
-        if (dirtyValue.indexOf('%') !== -1)
+        if (dirtyValue === null || dirtyValue === 'N/A')
+            sanitizedValue = null;
+        else if (dirtyValue.indexOf('%') !== -1)
             sanitizedValue = this.sanitizePercentage(dirtyValue);
         else if (dirtyValue.indexOf('B') !== -1)
             sanitizedValue = this.sanitizeBillions(dirtyValue);
         else if (dirtyValue.indexOf('M') !== -1)
             sanitizedValue = this.sanitizeMillions(dirtyValue);
-        else if (dirtyValue === 'N/A')
-            sanitizedValue = null;
-        else
-            sanitizedValue = dirtyValue;
+        else {
+            const parsedNumber = parseFloat(dirtyValue);
+
+            if (isNaN(parsedNumber))
+                sanitizedValue = dirtyValue;
+            else
+                sanitizedValue = parsedNumber;
+        }
 
         return sanitizedValue;
     }

@@ -3,6 +3,7 @@ const BalanceSheet = require('./stock-details/balance-sheet');
 const Profitability = require('./stock-details/profitability');
 const IncomeStatement = require('./stock-details/income-statement');
 const ValuationMeasure = require('./stock-details/valuation-measure');
+const StockSanitizer = require('./stock-sanitizer');
 
 class StockMapper {
     constructor(_) {
@@ -24,31 +25,47 @@ class StockMapper {
         const totalCash = this.findValue(scrapedStockInfo, 'Total Cash (mrq)');
         const totalDebt = this.findValue(scrapedStockInfo, 'Total Debt (mrq)');
 
-        return new BalanceSheet(totalCash, totalDebt);
+        return new BalanceSheet(
+            StockSanitizer.sanitize(totalCash),
+            StockSanitizer.sanitize(totalDebt)
+        );
     }
 
     mapProfitability(scrapedStockInfo) {
+        const profitMargin = this.findValue(scrapedStockInfo, 'Profit Margin');
+        const operatingMargin = this.findValue(scrapedStockInfo, 'Operating Margin (ttm)');
+
         return new Profitability(
-            this.findValue(scrapedStockInfo, 'Profit Margin'),
-            this.findValue(scrapedStockInfo, 'Operating Margin (ttm)'),
+            StockSanitizer.sanitize(profitMargin),
+            StockSanitizer.sanitize(operatingMargin)
         );
     }
 
     mapIncomeStatement(scrapedStockInfo) {
+        const revenue = this.findValue(scrapedStockInfo, 'Revenue (ttm)');
+        const revenuePerShare = this.findValue(scrapedStockInfo, 'Revenue Per Share (ttm)');
+        const grossProfit = this.findValue(scrapedStockInfo, 'Gross Profit (ttm)');
+        const ebitda = this.findValue(scrapedStockInfo, 'EBITDA');
+
         return new IncomeStatement(
-            this.findValue(scrapedStockInfo, 'Revenue (ttm)'),
-            this.findValue(scrapedStockInfo, 'Revenue Per Share (ttm)'),
-            this.findValue(scrapedStockInfo, 'Gross Profit (ttm)'),
-            this.findValue(scrapedStockInfo, 'EBITDA'),
+            StockSanitizer.sanitize(revenue),
+            StockSanitizer.sanitize(revenuePerShare),
+            StockSanitizer.sanitize(grossProfit),
+            StockSanitizer.sanitize(ebitda)
         );
     }
 
     mapValuationMeasure(scrapedStockInfo) {
+        const marketCap = this.findValue(scrapedStockInfo, 'Market Cap (intraday) 5');
+        const enterpriseValue = this.findValue(scrapedStockInfo, 'Enterprise Value 3');
+        const priceEarning = this.findValue(scrapedStockInfo, 'Trailing P/E');
+        const evEBITDA = this.findValue(scrapedStockInfo, 'Enterprise Value/EBITDA 6');
+
         return new ValuationMeasure(
-            this.findValue(scrapedStockInfo, 'Market Cap (intraday) 5'),
-            this.findValue(scrapedStockInfo, 'Enterprise Value 3'),
-            this.findValue(scrapedStockInfo, 'Trailing P/E'),
-            this.findValue(scrapedStockInfo, 'Enterprise Value/EBITDA 6'),
+            StockSanitizer.sanitize(marketCap),
+            StockSanitizer.sanitize(enterpriseValue),
+            StockSanitizer.sanitize(priceEarning),
+            StockSanitizer.sanitize(evEBITDA)
         );
     }
 
