@@ -1,5 +1,4 @@
 const _ = require('lodash');
-const sinon = require('sinon');
 
 const StockMapper = require('./stock-mapper');
 
