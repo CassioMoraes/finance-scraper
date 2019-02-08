@@ -10,8 +10,8 @@ class StockMapper {
         this._ = _;
     }
 
-    map(scrapedStockInfo, ticker) {
-        const company = new Company('', ticker, '');
+    map(scrapedStockInfo, ticker, address) {
+        const company = new Company('', ticker, address);
 
         company.balanceSheet = this.mapBalanceSheet(scrapedStockInfo);
         company.profitability = this.mapProfitability(scrapedStockInfo);

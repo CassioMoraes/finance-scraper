@@ -13,9 +13,10 @@ const scrapedInfoTest = [
 describe('#map()', () => {
     test('should return scraped info mapped for company class', async () => {
         const stockMapper = new StockMapper(_);
-        const mappedData = stockMapper.map(scrapedInfoTest, 'BIDI4')
+        const mappedData = stockMapper.map(scrapedInfoTest, 'BIDI4', 'www.test.com')
 
         expect(mappedData.ticker).toBe('BIDI4');
+        expect(mappedData.address).toBe('www.test.com');
         expect(mappedData.profitability.profitMargin).toBe(16.55);
         expect(mappedData.valuationMeasure.marketCap).toBe(4310000000);
         expect(mappedData.valuationMeasure.enterpriseValue).toBe(4490000);

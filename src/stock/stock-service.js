@@ -6,10 +6,10 @@ class StockService {
 
     async getStockInfo() {
         const ticker = 'BIDI4';
-        const stockPath = 'https://finance.yahoo.com/quote/' + ticker + '.SA/key-statistics?p=' + ticker + '.SA';
-        const scrapedInfo = await this.stockScrapper.scrapeStockInfo(stockPath);
+        const stockAddress = 'https://finance.yahoo.com/quote/' + ticker + '.SA/key-statistics?p=' + ticker + '.SA';
+        const scrapedInfo = await this.stockScrapper.scrapeStockInfo(stockAddress);
 
-        const stocksInfo = this.stockMapper.map(scrapedInfo, ticker);
+        const stocksInfo = this.stockMapper.map(scrapedInfo, ticker, stockAddress);
 
         return stocksInfo;
     }
